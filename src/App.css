@@ -1,0 +1,25 @@
+html,
+body {
+  height: 100%;
+  text-align: center;
+  margin-top: 60px;
+  color: #61dafb;
+  background: #2C2726;
+  font-family: fantasy;
+  font-size: 20px;
+}
+
+.input-large {
+  height: 40px;
+  font-family: fantasy;
+  margin-bottom: 40px;
+}
+
+.add-todo {
+  width: 70%;
+}
+
+.btn {
+  margin-left: 30px;
+  height: 40px;
+}
