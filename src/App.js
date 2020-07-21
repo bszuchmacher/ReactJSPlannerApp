@@ -3,8 +3,7 @@ import "./App.css";
 import Header from "./components/Header";
 import Todos from "./components/Todos";
 import AddTodoBar from "./components/AddTodoBar";
-
-
+import Reset from "./components/Reset";
 
 class App extends React.Component {
   constructor(props) {
@@ -19,9 +18,15 @@ class App extends React.Component {
       todos: this.state.todos.filter((todo) => {
         if (todo.id === id) {
           todo.completed = !todo.completed;
-        } //This is the toggle for moving the items from ToDo to Done List
+        }
         return todo;
       }),
+    });
+  };
+
+  delTodo = (id) => {
+    this.setState({
+      todos: [...this.state.todos.filter((todo) => todo.id !== id)],
     });
   };
 
@@ -37,25 +42,31 @@ class App extends React.Component {
     console.log(this.state.todos);
   };
 
+  refreshPage = () => {
+    this.setState({ todos: [] });
+  };
 
   render() {
     return (
-      <div className="text-center row ">
+      <div className="text-center row">
         <div className="col-md-12 justify-items-center">
           <AddTodoBar addTodo={this.addTodo}></AddTodoBar>
+          <Reset refreshPage={this.refreshPage}></Reset>
         </div>
-        <div className="col-md-8">
+        <div className="col-md-6">
           <Header></Header>
           <Todos
             todos={this.state.todos.filter((todo) => !todo.completed)}
             toggleComplete={this.toggleComplete}
+            delTodo={this.delTodo}
           ></Todos>
         </div>
-        <div className="col-md-8">
+        <div className="col-md-6">
           <h1>Done</h1>
           <Todos
             todos={this.state.todos.filter((todo) => todo.completed)}
             toggleComplete={this.toggleComplete}
+            delTodo={this.delTodo}
           ></Todos>
         </div>
       </div>
