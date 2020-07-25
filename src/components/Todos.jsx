@@ -9,7 +9,7 @@ class Todos extends React.Component {
 				todo={todo}
 				toggleComplete={this.props.toggleComplete}
 				delTodo={this.props.delTodo}
-				editTodo={this.props.editTodo}
+				// editTodo={this.props.editTodo}
 			></TodoItem>
 		));
 	}

@@ -8,6 +8,17 @@ class AddTodoBar extends React.Component {
 		};
 	}
 
+	handleInputEditDone(title) {
+		const completedItems = this.state.completedItems;
+	
+		completedItems.map((item) => {
+		  if (item.title === title) {
+			this.state.title = title;
+		  }
+		});
+		this.setState({ completedItems: completedItems });
+	  }
+
 	onChange = (e) => {
 		this.setState({ title: e.target.value });
 	};
@@ -28,6 +39,7 @@ class AddTodoBar extends React.Component {
 					placeholder="Add Todo ..."
 					value={this.state.title}
 					onChange={this.onChange}
+					// onChange={(e) => this.handleInputEditDone(e.target.value, this.state.title)}
 				/>
 				<input type="submit" value="Submit" className="btn btn-success" />
 			</form>

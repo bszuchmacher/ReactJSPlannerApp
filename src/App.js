@@ -39,7 +39,18 @@ class App extends React.Component {
       ],
     };
   }
-  
+
+  handleDoneInputEdit(title) {
+		const completedItems = this.state.completedItems;
+	
+		completedItems.map((item) => {
+		  if (item.title === title) {
+		this.state.title = title;
+		  }
+		});
+		this.setState({ completedItems: completedItems });
+	  }
+
   toggleComplete = (id) => {
     this.setState({
       todos: this.state.todos.filter((todo) => {
@@ -51,8 +62,6 @@ class App extends React.Component {
     });
   };
 
-  
-
   delTodo = (id) => {
     this.setState({
       todos: [...this.state.todos.filter((todo) => todo.id !== id)],
@@ -61,7 +70,7 @@ class App extends React.Component {
 
   addTodo = (title) => {
     const newTodo = {
-      id: [uuid()],
+      id: [],
       title: title,
       completed: false,
     };
@@ -72,10 +81,35 @@ class App extends React.Component {
   };
 
   refreshPage = () => {
-    this.setState({ todos: [] });
+    this.setState({ todos: [
+      {
+        id: uuid(),
+        title: "Fight with Wife",
+        completed: false,
+        date: new Date()
+      },
+      {
+        id: uuid(),
+        title: "Get a good internship",
+        completed: false,
+        date: new Date()
+      },
+      {
+        id: uuid(),
+        title: "Yell at Kids",
+        completed: false,
+        date: new Date()
+      },
+      {
+        id: uuid(),
+        title: "With Life",
+        completed: true,
+        date: new Date()
+      },
+    ] });
   };
 
-  
+
   render() {
     return (
       <div className="text-center row">
