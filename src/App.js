@@ -4,15 +4,42 @@ import Header from "./components/Header";
 import Todos from "./components/Todos";
 import AddTodoBar from "./components/AddTodoBar";
 import Reset from "./components/Reset";
+import { v4 as uuid } from "uuid";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos: [],
+      edit: false,
+      todos: [
+        {
+          id: uuid(),
+          title: "Fight with Wife",
+          completed: false,
+          date: new Date()
+        },
+        {
+          id: uuid(),
+          title: "Get a good internship",
+          completed: false,
+          date: new Date()
+        },
+        {
+          id: uuid(),
+          title: "Yell at Kids",
+          completed: false,
+          date: new Date()
+        },
+        {
+          id: uuid(),
+          title: "With Life",
+          completed: true,
+          date: new Date()
+        },
+      ],
     };
   }
-
+  
   toggleComplete = (id) => {
     this.setState({
       todos: this.state.todos.filter((todo) => {
@@ -24,6 +51,8 @@ class App extends React.Component {
     });
   };
 
+  
+
   delTodo = (id) => {
     this.setState({
       todos: [...this.state.todos.filter((todo) => todo.id !== id)],
@@ -32,7 +61,7 @@ class App extends React.Component {
 
   addTodo = (title) => {
     const newTodo = {
-      id: [],
+      id: [uuid()],
       title: title,
       completed: false,
     };
@@ -46,6 +75,7 @@ class App extends React.Component {
     this.setState({ todos: [] });
   };
 
+  
   render() {
     return (
       <div className="text-center row">
